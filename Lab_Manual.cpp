@@ -34,7 +34,7 @@ int main() {
     float totalAmount = quantity * unitPrice;
     float discount = totalAmount * 0.20;
     float finalAmount = totalAmount - discount;
-    cout << "The final bill amount after 20% discount is: " << finalAmount << endl;
+    cout << "The final bill amount after 20%% discount is: " << finalAmount << endl;
 
 //Q-5
     int a, b;
@@ -126,5 +126,208 @@ int main() {
         cout << year << " is not a Leap Year." << endl;
     }
 
+//Q-11
+    int orderQuantity;
+    float unitCost;
+    cout << "Enter order quantity and unit cost: ";
+    cin >> orderQuantity >> unitCost;
+    float totalCost = orderQuantity * unitCost;
+    if (orderQuantity > 1000) {
+        float discount = totalCost * 0.10;
+        totalCost -= discount;
+        cout << "A discount of " << discount << " has been applied." << endl;
+    }
+    cout << "Total expenses: " << totalCost << endl;
+    getch();
+    
+//Q-12
+    float side1, side2, side3;
+    cout << "Enter the three sides of the triangle: ";
+    cin >> side1 >> side2 >> side3;
+    if (side1 == side2 && side2 == side3) {
+        cout << "The triangle is equilateral." << endl;
+    } else if (side1 == side2 || side2 == side3 || side1 == side3) {
+        cout << "The triangle is isosceles." << endl;
+    } else {
+        cout << "The triangle is scalene." << endl;
+    }
+
+//Q-13
+    #include <math.h>
+    int a, b, c;
+    cout << "Enter coefficients a, b and c: ";
+    cin >> a >> b >> c;
+    float discriminant = b * b - 4 * a * c;
+    if (discriminant < 0) {
+        cout << "The equation has no real roots." << endl;
+    } else {
+        float root1 = (-b + sqrt(discriminant)) / (2 * a);
+        float root2 = (-b - sqrt(discriminant)) / (2 * a);
+        cout << "Roots are: " << root1 << " and " << root2 << endl;
+    }
+
+//Q-14
+    int choice;
+    do {
+        cout << "Menu:\n1. Addition\n2. Subtraction\n3. Multiplication\n4. Division\n5. Exit\nEnter your choice: ";
+        cin >> choice;
+        if (choice >= 1 && choice <= 4) {
+            float num1, num2;
+            cout << "Enter two numbers: ";
+            cin >> num1 >> num2;
+            switch (choice) {
+                case 1:
+                    cout << "Result: " << num1 + num2 << endl;
+                    break;
+                case 2:
+                    cout << "Result: " << num1 - num2 << endl;
+                    break;
+                case 3:
+                    cout << "Result: " << num1 * num2 << endl;
+                    break;
+                case 4:
+                    if (num2 != 0) {
+                        cout << "Result: " << num1 / num2 << endl;
+                    } else {
+                        cout << "Error: Division by zero!" << endl;
+                    }
+                    break;
+            }
+        } else if (choice != 5) {
+            cout << "Invalid choice! Please try again." << endl;
+        }
+    } while (choice != 5);
+    
+//Q-15
+    int n;
+    float salesFigure, maxSales;
+    cout << "Enter the number of sales entries: ";
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        cout << "Enter sales figure " << (i + 1) << ": ";
+        cin >> salesFigure;
+        if (i == 0 || salesFigure > maxSales) {
+            maxSales = salesFigure;
+        }
+    }
+    cout << "The maximum sales figure is: " << maxSales << endl;
+
+//Q-16
+    int n;
+    bool isPrime = true;
+    cout << "Enter a number to check if it is prime: ";
+    cin >> n;
+    if (n <= 1) {
+        isPrime = false;
+    } 
+    else {
+        for (int i = 2; i <= n / 2; i++) { 
+            if (n % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+    }
+    if (isPrime) {
+        cout << n << " is a prime number." << endl;
+    } else {
+        cout << n << " is not a prime number." << endl;
+    }
+//Q-17
+    #include <math.h>
+    int n;
+    cout << "Enter a number: ";
+    cin >> n;
+    int originalNumber = n;
+    int numOfDigits = 0;
+    int temp = n;
+    while (temp > 0) {
+        numOfDigits++;
+        temp /= 10;
+    }
+    int sumOfDigits = 0;
+    while (n > 0) {
+        int digit = n % 10;
+        sumOfDigits += pow(digit, numOfDigits);
+        n /= 10;
+    }
+    if (sumOfDigits == originalNumber) {
+        cout << originalNumber << " is an Armstrong number." << endl;
+    } else {
+        cout << originalNumber << " is not an Armstrong number." << endl;
+    }
+    
+//Q-18
+//Q-19
+//Q-20
+//Q-21
+//Q-22
+//Q-23
+//Q-24
+//Q-25
+//Q-26
+    float reportCard[5];
+    float total = 0.0, percentage;
+    for (int i = 0; i < 5; i++) {
+        cout << "Enter marks for subject " << (i + 1) << ": ";
+        cin >> reportCard[i];
+        total += reportCard[i];
+    }
+    percentage = (total / 500) * 100;
+    cout << "Total Marks: " << total << "/500" << endl;
+    cout << "Percentage: " << percentage << "%" << endl;
+
+//Q-27
+//Q-28
+    int arr[5], evenSum = 0, oddSum = 0;
+    for (int i = 0; i < 5; i++) {
+        cout << "Enter element " << (i + 1) << ": ";
+        cin >> arr[i];
+        if (arr[i] % 2 == 0) {
+            evenSum += arr[i];
+        } else {
+            oddSum += arr[i];
+        }
+    }
+    cout << "Sum of even numbers: " << evenSum << endl;
+    cout << "Sum of odd numbers: " << oddSum << endl;
+
+//Q-29
+//Q-30
+//Q-31
+    int codes[5], defectCodes = 0;
+    for (int i = 0; i < 5; i++) {
+        cout << "Enter code " << (i + 1) << ": ";
+        cin >> codes[i];
+        if (codes[i] % 3 == 0 && codes[i] % 5 == 0) {
+            defectCodes++;
+        }
+    }
+    cout << "Number of defect codes: " << defectCodes << endl;
+
+//Q-32
+    float stockValues[5], Value1, Value2;
+    for (int i = 0; i < 5; i++) {
+        cout << "Enter stock value " << (i + 1) << ": ";
+        cin >> stockValues[i];
+    }
+    Value1 = stockValues[0];
+    for (int j = 0; j < 5; j++) {
+        if (stockValues[j] > Value1) {
+        Value1 = stockValues[j];
+        }
+    }
+    Value2 = stockValues[0];
+    for (int k = 0; k < 5; k++) {
+        if (stockValues[k] > Value2 && stockValues[k] < Value1) {
+            Value2 = stockValues[k];
+        }
+    }
+    cout << "Highest value: " << Value1 << endl;
+    cout << "Second highest value: " << Value2 << endl;
+
+//Q-33
+//
+        
     return 0;
 }
