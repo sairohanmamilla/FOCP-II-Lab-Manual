@@ -233,6 +233,7 @@ int main() {
     } else {
         cout << n << " is not a prime number." << endl;
     }
+
 //Q-17
     #include <math.h>
     int n;
@@ -248,7 +249,7 @@ int main() {
     int sumOfDigits = 0;
     while (n > 0) {
         int digit = n % 10;
-        sumOfDigits += pow(digit, numOfDigits);
+        sumOfDigits += round(pow(digit, numOfDigits));
         n /= 10;
     }
     if (sumOfDigits == originalNumber) {
@@ -256,15 +257,164 @@ int main() {
     } else {
         cout << originalNumber << " is not an Armstrong number." << endl;
     }
+    bool isPerfect = false;
+    if (n > 1) {
+        int sumOfDivisors = 1;
+        for (int i = 2; i * i <= n; i++) {
+            if (n % i == 0) {
+                sumOfDivisors += i;
+                if (i * i != n) {
+                    sumOfDivisors += n / i;
+                }
+            }
+        }
+        if (sumOfDivisors == n) {
+                cout << n << " is a Perfect number." << endl;
+            } else {
+                cout << n << " is not a Perfect number." << endl;
+            }
+    }
     
 //Q-18
+    string id;
+    cout << "Enter ID to check: ";
+    cin >> id;
+    bool isPalindrome = true;
+    int len = id.length();
+    for(int i = 0; i < len / 2; i++) {
+        if(id[i] != id[len - 1 - i]) {
+            isPalindrome = false;
+            break; 
+        }
+    }
+    if(isPalindrome) {
+        cout << id << " is a valid palindrome ID.\n";
+    } else {
+        cout << id << " is not a palindrome.\n";
+    }
+
 //Q-19
+    int start, end;
+    cout << "Enter the start and end of the range: ";
+    cin >> start >> end;
+    cout << "Prime numbers between " << start << " and " << end << ":\n";
+    for(int num = start; num <= end; num++) {
+        if(num <= 1) continue;
+        bool isPrime = true;
+        for(int i = 2; i * i <= num; i++) {
+            if(num % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        if(isPrime) {
+            cout << num << " ";
+        }
+    }
+    cout << "\n";
+
 //Q-20
+    for(int i = 0; i < 3; i++) {
+        for(int j = 1; j <= 5; j++) {
+            cout << j;
+        }
+        cout << "\n";
+    }
+
+//Q-20
+    for(int i = 1; i <= 5; i++) {
+        for(int j = 5; j >= i; j--) {
+            cout << j;
+        }
+        cout << "\n";
+    }
+
 //Q-21
+    int rows = 8, cols = 8;
+    for(int i = 1; i <= rows; i++) {
+        for(int j = 1; j <= cols; j++) {
+            if(i == 1 || i == rows || j == 1 || j == cols) {
+                cout << "*";
+            } else {
+                cout << " ";
+            }
+        }
+        cout << "\n";
+    }
+
 //Q-22
+    int n = 5;
+    for(int i = 1; i <= n; i++) {
+        for(int j = i; j < n; j++) cout << " ";
+        for(int j = 1; j <= (2 * i - 1); j++) {
+            if(j == 1 || j == (2 * i - 1)) cout << "*";
+            else cout << " ";
+        }
+        cout << "\n";
+    }
+    for(int i = n - 1; i >= 1; i--) {
+        for(int j = n; j > i; j--) cout << " ";
+        for(int j = 1; j <= (2 * i - 1); j++) {
+            if(j == 1 || j == (2 * i - 1)) cout << "*";
+            else cout << " ";
+        }
+        cout << "\n";
+    }
+
 //Q-23
+    int n = 5;
+        for(int i = 1; i <= n; i++) {
+            for(int j = 1; j <= i; j++) cout << "*";
+            int spaces = 2 * (n - i);
+            for(int j = 1; j <= spaces; j++) cout << " ";
+            for(int j = 1; j <= i; j++) cout << "*";
+            cout << "\n";
+        }
+        for(int i = n - 1; i >= 1; i--) {
+            for(int j = 1; j <= i; j++) cout << "*";
+            int spaces = 2 * (n - i);
+            for(int j = 1; j <= spaces; j++) cout << " ";
+            for(int j = 1; j <= i; j++) cout << "*";
+            cout << "\n";
+        }
+
 //Q-24
+    for(int i = 1; i <= 5; i++) {
+        char ch = 'A';
+        for(int j = 1; j <= i; j++) {
+            cout << ch;
+            ch++;
+        }
+        cout << "\n";
+    }
+
 //Q-25
+    string password;
+    cout << "Enter a password to validate: ";
+    cin >> password;
+    bool hasUpper = false;
+    bool hasLower = false;
+    bool hasDigit = false;
+    bool hasSpecial = false;
+    for(int i = 0; i < password.length(); i++) {
+        char c = password[i];
+        if(c >= 'A' && c <= 'Z') {
+            hasUpper = true;
+        } else if(c >= 'a' && c <= 'z') {
+            hasLower = true;
+        } else if(c >= '0' && c <= '9') {
+            hasDigit = true;
+        } else if(c == '@' || c == '#' || c == '$' || c == '%' || 
+                  c == '!' || c == '&' || c == '*') {
+            hasSpecial = true;
+        }
+    }
+    if(hasUpper && hasLower && hasDigit && hasSpecial) {
+        cout << "Valid: The password meets all security conditions.\n";
+    } else {
+        cout << "Invalid: The password does not meet the policy conditions.\n";
+    }
+
 //Q-26
     float reportCard[5];
     float total = 0.0, percentage;
@@ -278,6 +428,21 @@ int main() {
     cout << "Percentage: " << percentage << "%" << endl;
 
 //Q-27
+    double prices[10];
+    cout << "Enter the prices of 10 items:\n";
+    for (int i = 0; i < 10; i++) {
+        cout << "Price of item " << (i + 1) << ": ";
+        cin >> prices[i];
+    }
+    double maxPrice = prices[0];
+    for (int i = 1; i < 10; i++) {
+        if (prices[i] > maxPrice) {
+            maxPrice = prices[i];
+        }
+    }
+    cout << "\n--- Result ---\n";
+    cout << "The maximum price among the 10 items is: " << maxPrice << endl;
+
 //Q-28
     int arr[5], evenSum = 0, oddSum = 0;
     for (int i = 0; i < 5; i++) {
@@ -293,7 +458,35 @@ int main() {
     cout << "Sum of odd numbers: " << oddSum << endl;
 
 //Q-29
+    double temperatures[30];
+    cout << "Enter the recorded temperatures for 30 days:\n";
+    for (int i = 0; i < 30; i++) {
+        cout << "Day " << (i + 1) << " temperature: ";
+        cin >> temperatures[i];
+    }
+    double minTemp = temperatures[0];
+    for (int i = 1; i < 30; i++) {
+        if (temperatures[i] < minTemp) {
+            minTemp = temperatures[i];
+        }
+    }
+    cout << "\n--- Monthly Report ---\n";
+    cout << "The minimum temperature recorded this month was: " << minTemp << " degrees.\n";
+
 //Q-30
+    double salaries[10];
+    double totalSalary = 0.0;
+    cout << "Enter the salaries of 10 employees:\n";
+    for (int i = 0; i < 10; i++) {
+        cout << "Employee " << (i + 1) << " salary: ";
+        cin >> salaries[i];
+        totalSalary += salaries[i];
+    }
+    double averageSalary = totalSalary / 10.0;
+    cout << "\n--- Payroll Summary ---\n";
+    cout << "Total Salary Payout: $" << totalSalary << endl;
+    cout << "Average Employee Salary: $" << averageSalary << endl;
+
 //Q-31
     int codes[5], defectCodes = 0;
     for (int i = 0; i < 5; i++) {
@@ -327,7 +520,181 @@ int main() {
     cout << "Second highest value: " << Value2 << endl;
 
 //Q-33
-//
+    int marks[3][5];
+    cout << "Enter marks for 3 students in 5 subjects:\n";
+    for(int i = 0; i < 3; i++) {
+        cout << "Student " << (i + 1) << ":\n";
+        for(int j = 0; j < 5; j++) {
+            cout << "  Subject " << (j + 1) << ": ";
+            cin >> marks[i][j];
+        }
+    }
+    cout << "\nMarks in 2nd subject of 1st student: " << marks[0][1] << "\n";
+    cout << "Marks in 5th subject of 3rd student: " << marks[2][4] << "\n";
+
+//Q-34
+    int mat1[3][3], mat2[3][3], sum[3][3];
+    cout << "Enter elements of first 3x3 matrix:\n";
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            cin >> mat1[i][j];
+        }
+    }
+    cout << "Enter elements of second 3x3 matrix:\n";
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            cin >> mat2[i][j];
+        }
+    }
+    cout << "\nSum of the matrices is:\n";
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            sum[i][j] = mat1[i][j] + mat2[i][j];
+            cout << sum[i][j] << " ";
+        }
+        cout << "\n";
+    }
+
+//Q-35
+    int matrix[3][3];
+    cout << "Enter elements of a 3x3 matrix:\n";
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            cin >> matrix[i][j];
+        }
+    }
+    cout << "\nTranspose of the matrix:\n";
+    for(int i = 0; i < 3; i++) {
+        for(int j = 0; j < 3; j++) {
+            cout << matrix[j][i] << " ";
+        }
+        cout << "\n";
+    }
+
+//Q-36
+    int m, n, p, q;
+    cout << "Enter rows and columns for first matrix (m n): ";
+    cin >> m >> n;
+    cout << "Enter rows and columns for second matrix (p q): ";
+    cin >> p >> q;
+    if (n != p) {
+        cout << "Matrix multiplication not possible. Columns of first must match rows of second.\n";
+        return 0;
+    }
+    int mat1[10][10], mat2[10][10], result[10][10] = {0};
+    cout << "Enter elements of first matrix:\n";
+    for(int i = 0; i < m; i++)
+        for(int j = 0; j < n; j++)
+            cin >> mat1[i][j];
+    cout << "Enter elements of second matrix:\n";
+    for(int i = 0; i < p; i++)
+        for(int j = 0; j < q; j++)
+            cin >> mat2[i][j];
+    for(int i = 0; i < m; i++) {
+        for(int j = 0; j < q; j++) {
+            for(int k = 0; k < n; k++) {
+                result[i][j] += mat1[i][k] * mat2[k][j];
+            }
+        }
+    }
+    cout << "\nResultant Matrix:\n";
+    for(int i = 0; i < m; i++) {
+        for(int j = 0; j < q; j++) {
+            cout << result[i][j] << " ";
+        }
+        cout << "\n";
+    }
+
+//Q-37
+    string username;
+    cout << "Enter username to validate: ";
+    getline(cin, username); 
+    bool isValid = true;
+    for(int i = 0; i < username.length(); i++) {
+        char c = username[i];
+        if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))) {
+            isValid = false;
+            break; 
+        }
+    }
+    if(isValid && username.length() > 0) {
+        cout << "Username is valid.\n";
+    } else {
+        cout << "Username is invalid (contains spaces or special characters).\n";
+    }
+
+//Q-39
+    int rows;
+    cout << "Enter the number of rows for Pascal's Triangle: ";
+    cin >> rows;
+    for (int i = 1; i <= rows; i++) {
+        for (int space = 1; space <= rows - i; space++) {
+            cout << "  ";
+        }
+
+        int val = 1; 
+        for (int j = 1; j <= i; j++) {
+            cout << val << "   ";
+            val = val * (i - j) / j; 
+        }
+        cout << "\n";
+    }
+
+//Q-40
+    string input, normalized = "";
+    cout << "Enter a text string: ";
+    getline(cin, input);
+
+    bool lastWasSpace = true; 
+    for (int i = 0; i < input.length(); i++) {
+        if (input[i] != ' ') {
+            normalized += input[i];
+            lastWasSpace = false;
+        } else if (!lastWasSpace) {
+            normalized += ' ';
+            lastWasSpace = true;
+        }
+    }
+    if (normalized.length() > 0 && normalized[normalized.length() - 1] == ' ') {
+        normalized = normalized.substr(0, normalized.length() - 1);
+    }
+
+    int wordCount = 0, digitCount = 0, specialCount = 0;
+    bool isValid = true;
+
+    if (normalized.length() > 0) {
+        wordCount = 1; 
+        
+        if (normalized[0] >= 'a' && normalized[0] <= 'z') {
+            normalized[0] = normalized[0] - 32; 
+        }
+
+        for (int i = 1; i < normalized.length(); i++) {
+            if (normalized[i] >= 'A' && normalized[i] <= 'Z') {
+                normalized[i] = normalized[i] + 32; 
+            }
+        }
+
+        for (int i = 0; i < normalized.length(); i++) {
+            char c = normalized[i];
+            if (c == ' ') {
+                wordCount++;
+            } else if (c >= '0' && c <= '9') {
+                digitCount++;
+            } else if (!((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))) {
+                specialCount++;
+                isValid = false; 
+            }
+        }
+    }
+
+    cout << "\nNormalized String: " << normalized << "\n";
+    cout << "Total Words: " << wordCount << "\n";
+    cout << "Total Digits: " << digitCount << "\n";
+    cout << "Total Special Characters: " << specialCount << "\n";
+    
+    if (isValid) cout << "Validation: SUCCESS (Only alphabets, digits, and spaces).\n";
+    else cout << "Validation: FAILED (Contains special characters).\n";
         
     return 0;
 }
