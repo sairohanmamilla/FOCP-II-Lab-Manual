@@ -695,6 +695,8 @@ int main() {
     
     if (isValid) cout << "Validation: SUCCESS (Only alphabets, digits, and spaces).\n";
     else cout << "Validation: FAILED (Contains special characters).\n";
-        
+
+    
     return 0;
 }
+
